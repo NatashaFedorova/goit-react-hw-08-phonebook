@@ -1,13 +1,5 @@
 import styled from 'styled-components';
 
-export const SectionEl = styled.section`
-  padding-top: ${props => props.theme.spacing(8)};
-
-  :last-child {
-    padding-bottom: ${props => props.theme.spacing(8)};
-  }
-`;
-
 export const Container = styled.div`
   position: relative;
   width: 1200px;

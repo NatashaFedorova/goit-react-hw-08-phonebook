@@ -1,12 +1,11 @@
-import ContactItem from 'components/ContactItem';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
-import { selectVisibilityContacts } from 'redux/selectors';
+import ContactItem from 'components/ContactItem';
 import { List } from './ContactList.styled';
+import { useSelector } from 'react-redux';
+import { selectVisibilityContacts } from 'redux/contacts/selectors';
 
 export const ContactList = () => {
   const contacts = useSelector(selectVisibilityContacts);
-
   return (
     <List>
       {contacts.map(contact => {
@@ -19,10 +18,9 @@ export const ContactList = () => {
 ContactList.propTypes = {
   contacts: PropTypes.arrayOf(
     PropTypes.exact({
-      createdAt: PropTypes.string.isRequired,
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
-      phone: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
     })
   ),
 };

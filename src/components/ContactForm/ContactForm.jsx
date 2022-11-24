@@ -3,18 +3,18 @@ import * as yup from 'yup';
 import 'yup-phone';
 import { Formik, ErrorMessage } from 'formik';
 import { DataForm, Input, Label, BtnSubmit, Error } from './ContactForm.styled';
-import { addContact } from 'redux/operations';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectContactsList } from 'redux/selectors';
+import { selectContactsList } from 'redux/contacts/selectors';
+import { addContact } from 'redux/contacts/operation';
 
 const schema = yup.object().shape({
   name: yup.string().required(),
-  phone: yup.string().phone().required(),
+  number: yup.string().phone().required(),
 });
 
 const initialValues = {
   name: '',
-  phone: '+',
+  number: '+',
 };
 
 const nameCheck = (contacts, value) => {
@@ -30,9 +30,10 @@ const ContactForm = () => {
   const handleSubmit = (value, { resetForm }) => {
     const nameCheckResult = nameCheck(contacts, value.name);
     if (nameCheckResult) {
-      alert(`${value.name} is already in contact`);
+      alert(`${value.Errorname} is already in contact`);
       return;
     }
+    console.log(value);
     dispatch(addContact(value));
     resetForm();
   };
@@ -57,15 +58,15 @@ const ContactForm = () => {
         </Label>
 
         <Label>
-          Number
+          Phone number
           <Input
             type="tel"
-            name="phone"
+            name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses"
             required
           />
-          <ErrorMessage name="phone" component={Error} />
+          <ErrorMessage name="number" component={Error} />
         </Label>
         <BtnSubmit type="submit">Add contact</BtnSubmit>
       </DataForm>
@@ -76,10 +77,9 @@ const ContactForm = () => {
 ContactForm.propTypes = {
   contacts: PropTypes.arrayOf(
     PropTypes.exact({
-      createdAt: PropTypes.string.isRequired,
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
-      phone: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
     })
   ),
 };
