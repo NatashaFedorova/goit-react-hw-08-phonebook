@@ -13,11 +13,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter basename="goit-react-hw-08-phonebook">
       <Provider store={store}>
-        {/* <PersistGate loading={null} persistor={persistor}> */}
-        <ThemeProvider theme={theme}>
-          <App />
-        </ThemeProvider>
-        {/* </PersistGate> */}
+        <PersistGate loading={null} persistor={persistor}>
+          <ThemeProvider theme={theme}>
+            <App />
+          </ThemeProvider>
+        </PersistGate>
       </Provider>
     </BrowserRouter>
   </React.StrictMode>

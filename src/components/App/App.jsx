@@ -12,13 +12,13 @@
 import { lazy, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import { selectIsRefreshing } from '../../redux/auth/selectors';
+// import { selectIsRefreshing } from '../../redux/auth/selectors';
 
 import SharedLayout from 'components/SharedLayout';
 import Home from 'page/Home';
 
 import { Background } from 'components/constants/Background.styled';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { refreshUser } from 'redux/auth/operations';
 
 const Register = lazy(() => import('page/Register'));
@@ -27,7 +27,7 @@ const Contacts = lazy(() => import('page/Contacts'));
 
 const App = () => {
   const dispatch = useDispatch();
-  const isRefreshing = useSelector(selectIsRefreshing);
+  // const isRefreshing = useSelector(selectIsRefreshing);
 
   useEffect(() => {
     dispatch(refreshUser());
@@ -35,19 +35,15 @@ const App = () => {
 
   return (
     <Background>
-      {isRefreshing ? (
-        <p>isRefreshing...</p>
-      ) : (
-        <Routes>
-          <Route path="/" element={<SharedLayout />}>
-            <Route index element={<Home />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/contacts" element={<Contacts />} />
-            <Route path="*" element={<p>Page 404</p>} />
-          </Route>
-        </Routes>
-      )}
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<Home />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/contacts" element={<Contacts />} />
+          <Route path="*" element={<p>Page 404</p>} />
+        </Route>
+      </Routes>
     </Background>
   );
 };
