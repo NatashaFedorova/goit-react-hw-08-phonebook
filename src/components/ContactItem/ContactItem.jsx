@@ -1,9 +1,32 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { deleteContact } from 'redux/contacts/operation';
+import { changeContact, deleteContact } from 'redux/contacts/operation';
 
 import { Item, About, BtnDelete } from './ContactItem.styled';
+
+const Modal = ({ onClick, contact }) => {
+  const dispatch = useDispatch();
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    const newContact = { ...contact, number: e.target.elements.phone.value };
+    dispatch(changeContact(newContact));
+    e.target.reset();
+    onClick(false);
+  };
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <input type="text" name="phone" />
+        <button type="submit">Submit-change</button>
+      </form>
+      <button type="button" onClick={() => onClick(false)}>
+        Close
+      </button>
+    </div>
+  );
+};
 
 const ContactItem = ({ contact }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -25,14 +48,7 @@ const ContactItem = ({ contact }) => {
           </BtnDelete>
         </div>
       </Item>
-      {isModalOpen && (
-        <div>
-          <p>Modal</p>
-          <button type="button" onClick={() => setIsModalOpen(false)}>
-            Close
-          </button>
-        </div>
-      )}
+      {isModalOpen && <Modal onClick={setIsModalOpen} contact={contact} />}
     </>
   );
 };

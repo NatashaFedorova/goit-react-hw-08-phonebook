@@ -4,6 +4,7 @@ import {
   addContact,
   // changeContact,
   deleteContact,
+  changeContact,
 } from './operation';
 
 const handlePending = state => {
@@ -25,12 +26,12 @@ const contactsSlice = createSlice({
   extraReducers: {
     [getContacts.pending]: handlePending,
     [addContact.pending]: handlePending,
-    // [changeContact.pending]: handlePending,
+    [changeContact.pending]: handlePending,
     [deleteContact.pending]: handlePending,
 
     [getContacts.rejected]: handleRejected,
     [addContact.rejected]: handleRejected,
-    // [changeContact.rejected]: handleRejected,
+    [changeContact.rejected]: handleRejected,
     [deleteContact.rejected]: handleRejected,
 
     [getContacts.fulfilled](state, action) {
@@ -50,13 +51,13 @@ const contactsSlice = createSlice({
       state.items.splice(index, 1);
     },
 
-    // [changeContact.fulfilled](state, action) {
-    //   state.isLoading = false;
-    //   const index = state.items.findIndex(
-    //     task => task.id === action.payload.id
-    //   );
-    //   state.items.splice(index, 1, action.payload);
-    // },
+    [changeContact.fulfilled](state, action) {
+      state.isLoading = false;
+      const index = state.items.findIndex(
+        task => task.id === action.payload.id
+      );
+      state.items.splice(index, 1, action.payload);
+    },
   },
 });
 

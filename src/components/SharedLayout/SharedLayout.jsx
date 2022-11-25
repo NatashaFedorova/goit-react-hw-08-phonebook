@@ -4,12 +4,12 @@ import { Container } from 'components/constants/Container.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { logOut } from 'redux/auth/operations';
 import { selectIsLoggedIn, selectUserName } from 'redux/auth/selectors';
+import Loader from 'components/Loader';
 
 const SharedLayout = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const name = useSelector(selectUserName);
-  console.log(isLoggedIn);
 
   return (
     <Container>
@@ -57,7 +57,8 @@ const SharedLayout = () => {
           )}
         </div>
       </header>
-      <Suspense fallback={<p>Loading...</p>}>
+
+      <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
     </Container>
