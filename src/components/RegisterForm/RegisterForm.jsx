@@ -1,6 +1,14 @@
-import { Form, Formik, Field, ErrorMessage } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 import { useDispatch } from 'react-redux';
 import { register } from '../../redux/auth/operations';
+import {
+  StyledForm,
+  Label,
+  StyledInput,
+  StyledBtn,
+  Error,
+} from './RegisterForm.styled';
+
 import * as yup from 'yup';
 import YupPassword from 'yup-password';
 YupPassword(yup);
@@ -28,7 +36,6 @@ const RegisterForm = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = (value, { resetForm }) => {
-    console.log(value);
     dispatch(register(value));
     resetForm();
   };
@@ -39,22 +46,39 @@ const RegisterForm = () => {
       onSubmit={handleSubmit}
       validationSchema={schema}
     >
-      <Form
-        // autoComplete="off"
-        style={{
-          display: 'flex',
-          gap: '20px',
-          marginTop: '20px',
-        }}
-      >
-        <Field type="text" name="name" style={{ color: 'white' }} />
-        <ErrorMessage name="name" />
-        <Field type="email" name="email" style={{ color: 'white' }} />
-        <ErrorMessage name="email" />
-        <Field type="password" name="password" style={{ color: 'white' }} />
-        <ErrorMessage name="password" />
-        <button type="submit">Submit</button>
-      </Form>
+      <StyledForm>
+        <Label>
+          Name
+          <StyledInput type="text" name="name" />
+          <ErrorMessage name="name">{msg => <Error>{msg}</Error>}</ErrorMessage>
+        </Label>
+
+        <Label>
+          Email
+          <StyledInput
+            type="email"
+            name="email"
+            title="Invalid email address"
+          />
+          <ErrorMessage name="email">
+            {msg => <Error>{msg}</Error>}
+          </ErrorMessage>
+        </Label>
+
+        <Label>
+          Password
+          <StyledInput
+            type="password"
+            name="password"
+            title="The length of the password is at least 8. The password must contain at least 1 uppercase letter, 1 lowercase letter, 1 symbol, 1 number"
+          />
+          <ErrorMessage name="password">
+            {() => <Error>{'Invalid password'}</Error>}
+          </ErrorMessage>
+        </Label>
+
+        <StyledBtn type="submit">Registration</StyledBtn>
+      </StyledForm>
     </Formik>
   );
 };

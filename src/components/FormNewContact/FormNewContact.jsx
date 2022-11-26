@@ -2,7 +2,13 @@ import PropTypes from 'prop-types';
 import * as yup from 'yup';
 import 'yup-phone';
 import { Formik, ErrorMessage } from 'formik';
-import { DataForm, Input, Label, BtnSubmit, Error } from './ContactForm.styled';
+import {
+  DataForm,
+  Input,
+  Label,
+  BtnSubmit,
+  Error,
+} from './FormNewContact.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectContactsList } from 'redux/contacts/selectors';
 import { addContact } from 'redux/contacts/operation';
@@ -23,19 +29,19 @@ const nameCheck = (contacts, value) => {
   );
 };
 
-const ContactForm = () => {
+const FormNewContact = ({ onClose }) => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContactsList);
 
   const handleSubmit = (value, { resetForm }) => {
     const nameCheckResult = nameCheck(contacts, value.name);
     if (nameCheckResult) {
-      alert(`${value.Errorname} is already in contact`);
+      alert(`${value.name} is already in contact`);
       return;
     }
-    console.log(value);
     dispatch(addContact(value));
     resetForm();
+    onClose(false);
   };
 
   return (
@@ -74,7 +80,7 @@ const ContactForm = () => {
   );
 };
 
-ContactForm.propTypes = {
+FormNewContact.propTypes = {
   contacts: PropTypes.arrayOf(
     PropTypes.exact({
       id: PropTypes.string.isRequired,
@@ -84,4 +90,4 @@ ContactForm.propTypes = {
   ),
 };
 
-export default ContactForm;
+export default FormNewContact;

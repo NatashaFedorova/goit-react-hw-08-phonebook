@@ -1,6 +1,13 @@
-import { Form, Formik, Field, ErrorMessage } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 import { useDispatch } from 'react-redux';
 import { logIn } from 'redux/auth/operations';
+import {
+  StyledForm,
+  Label,
+  StyledInput,
+  StyledBtn,
+  Error,
+} from './LoginForm.styled';
 import * as yup from 'yup';
 import YupPassword from 'yup-password';
 YupPassword(yup);
@@ -25,7 +32,6 @@ const initialValues = {
 const LoginForm = () => {
   const dispatch = useDispatch();
   const handleSubmit = (value, { resetForm }) => {
-    console.log(value);
     dispatch(logIn(value));
     resetForm();
   };
@@ -36,19 +42,32 @@ const LoginForm = () => {
       onSubmit={handleSubmit}
       validationSchema={schema}
     >
-      <Form
-        style={{
-          display: 'flex',
-          gap: '20px',
-          marginTop: '20px',
-        }}
-      >
-        <Field type="email" name="email" style={{ color: 'white' }} />
-        <ErrorMessage name="email" />
-        <Field type="password" name="password" style={{ color: 'white' }} />
-        <ErrorMessage name="password" />
-        <button type="submit">Submit</button>
-      </Form>
+      <StyledForm>
+        <Label>
+          Email
+          <StyledInput
+            type="email"
+            name="email"
+            title="Invalid email address"
+          />
+          <ErrorMessage name="email">
+            {msg => <Error>{msg}</Error>}
+          </ErrorMessage>
+        </Label>
+        <Label>
+          Password
+          <StyledInput
+            type="password"
+            name="password"
+            title="The length of the password is at least 8. The password must contain at least 1 uppercase letter, 1 lowercase letter, 1 symbol, 1 number"
+          />
+          <ErrorMessage name="password">
+            {msg => <Error>{'Invalid password'}</Error>}
+          </ErrorMessage>
+        </Label>
+
+        <StyledBtn type="submit">Log in</StyledBtn>
+      </StyledForm>
     </Formik>
   );
 };
