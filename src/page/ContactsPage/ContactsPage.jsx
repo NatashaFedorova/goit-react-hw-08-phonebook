@@ -9,7 +9,6 @@ import { Main, StyledBtn, Box } from './ContactsPage.styled';
 
 const ContactsPage = () => {
   const [isModalOpen, seIsModalOpen] = useState(false);
-  console.log(isModalOpen);
   const dispatch = useDispatch();
 
   useEffect(() => {

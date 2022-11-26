@@ -37,32 +37,3 @@ const Modal = ({ onClose, children }) => {
 };
 
 export default Modal;
-
-// =======================================================================
-// import { useDispatch } from 'react-redux';
-// import { changeContact } from 'redux/contacts/operation';
-
-// const Modal = ({ onClick, contact }) => {
-//   const dispatch = useDispatch();
-
-//   const handleSubmit = e => {
-//     e.preventDefault();
-//     const newContact = { ...contact, number: e.target.elements.phone.value };
-//     dispatch(changeContact(newContact));
-//     e.target.reset();
-//     onClick(false);
-//   };
-//   return (
-//     <div>
-//       <form onSubmit={handleSubmit}>
-//         <input type="text" name="phone" />
-//         <button type="submit">Submit-change</button>
-//       </form>
-//       <button type="button" onClick={() => onClick(false)}>
-//         Close
-//       </button>
-//     </div>
-//   );
-// };
-
-// export default Modal;

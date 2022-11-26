@@ -27,8 +27,23 @@ export const Delete = styled(Button)`
   padding: ${props => props.theme.spacing(3)};
 `;
 
-export const Call = styled(Button)`
+export const Call = styled.a`
+  cursor: pointer;
+  display: block;
   padding: ${props => props.theme.spacing(3)};
+  border: ${props => `1px solid ${props.theme.colors.accent}`};
+  border-radius: ${props => props.theme.radii.normal};
+  font-size: ${props => props.theme.fontSizes.small};
+  font-weight: ${props => props.theme.fontWeight.medium};
+  color: ${props => props.theme.colors.accent};
+  background-color: transparent;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover,
+  &:focus {
+    color: ${props => props.theme.colors.light};
+    background-color: ${props => props.theme.colors.accent};
+  }
 `;
 
 export const Change = styled(Button)`
