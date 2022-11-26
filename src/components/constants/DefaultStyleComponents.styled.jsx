@@ -92,7 +92,7 @@ export const BaseStyledLabel = styled.label`
 `;
 
 export const BaseStyledError = styled.p`
-  font-size: ${props => props.theme.fontSizes.small};
+  font-size: 14px;
   position: absolute;
   bottom: -32px;
   text-align: center;

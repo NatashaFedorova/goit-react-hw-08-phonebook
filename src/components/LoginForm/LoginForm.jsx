@@ -62,7 +62,13 @@ const LoginForm = () => {
             title="The length of the password is at least 8. The password must contain at least 1 uppercase letter, 1 lowercase letter, 1 symbol, 1 number"
           />
           <ErrorMessage name="password">
-            {msg => <Error>{'Invalid password'}</Error>}
+            {msg => (
+              <Error>
+                {
+                  'The length of the password is at least 8. The password must contain at least 1 uppercase letter, 1 lowercase letter, 1 symbol, 1 numbers'
+                }
+              </Error>
+            )}
           </ErrorMessage>
         </Label>
 
