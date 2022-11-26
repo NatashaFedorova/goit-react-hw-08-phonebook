@@ -14,6 +14,7 @@ const authSlice = createSlice({
   initialState,
   extraReducers: {
     [register.fulfilled](state, action) {
+      console.log(action.payload.user);
       state.error = null;
       state.user = action.payload.user;
       state.token = action.payload.token;
@@ -23,6 +24,7 @@ const authSlice = createSlice({
       state.error = action.payload;
     },
     [logIn.fulfilled](state, action) {
+      console.log(action.payload.user);
       state.error = null;
       state.user = action.payload.user;
       state.token = action.payload.token;
