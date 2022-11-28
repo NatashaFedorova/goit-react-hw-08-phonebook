@@ -42,7 +42,7 @@ const LoginForm = () => {
       onSubmit={handleSubmit}
       validationSchema={schema}
     >
-      <StyledForm>
+      <StyledForm autoComplete="off">
         <Label>
           Email
           <StyledInput

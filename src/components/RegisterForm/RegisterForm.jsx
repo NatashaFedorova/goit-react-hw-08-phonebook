@@ -46,7 +46,7 @@ const RegisterForm = () => {
       onSubmit={handleSubmit}
       validationSchema={schema}
     >
-      <StyledForm>
+      <StyledForm autoComplete="off">
         <Label>
           Name
           <StyledInput type="text" name="name" />

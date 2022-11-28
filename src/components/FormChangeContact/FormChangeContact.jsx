@@ -35,7 +35,7 @@ const FormChangeContact = ({ contact, onClose }) => {
         onSubmit={handleSubmit}
         validationSchema={schema}
       >
-        <StyledForm>
+        <StyledForm autoComplete="off">
           <Label>
             Phone number
             <Input
