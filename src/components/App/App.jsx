@@ -9,6 +9,10 @@ import PublicRestrictedRoute from 'components/PublicRestrictedRoute';
 import PrivateRoute from 'components/PrivateRoute';
 import { selectIsRefreshing } from 'redux/auth/selectors';
 import RefreshingUserLoader from 'components/RefreshingUserLoader';
+import { darkTheme, lightTheme } from 'components/constants/Theme';
+import { ThemeProvider } from 'styled-components';
+
+import { selectStatusTheme } from 'redux/theme/selectors';
 
 const RegisterPage = lazy(() => import('page/RegisterPage'));
 const LoginPage = lazy(() => import('page/LoginPage'));
@@ -19,50 +23,55 @@ const App = () => {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
 
+  const value = useSelector(selectStatusTheme);
+  const theme = value ? darkTheme : lightTheme;
+
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
 
   return (
-    <Background>
-      {isRefreshing ? (
-        <RefreshingUserLoader />
-      ) : (
-        <Routes>
-          <Route path="/" element={<SharedLayout />}>
-            <Route index element={<HomePage />} />
-            <Route
-              path="/register"
-              element={
-                <PublicRestrictedRoute
-                  redirectTo="/contacts"
-                  component={<RegisterPage />}
-                />
-              }
-            />
-            <Route
-              path="/login"
-              element={
-                <PublicRestrictedRoute
-                  redirectTo="/contacts"
-                  component={<LoginPage />}
-                />
-              }
-            />
-            <Route
-              path="/contacts"
-              element={
-                <PrivateRoute
-                  redirectTo="/login"
-                  component={<ContactsPage />}
-                />
-              }
-            />
-            <Route path="*" element={<ErrorPage />} />
-          </Route>
-        </Routes>
-      )}
-    </Background>
+    <ThemeProvider theme={theme}>
+      <Background>
+        {isRefreshing ? (
+          <RefreshingUserLoader />
+        ) : (
+          <Routes>
+            <Route path="/" element={<SharedLayout />}>
+              <Route index element={<HomePage />} />
+              <Route
+                path="/register"
+                element={
+                  <PublicRestrictedRoute
+                    redirectTo="/contacts"
+                    component={<RegisterPage />}
+                  />
+                }
+              />
+              <Route
+                path="/login"
+                element={
+                  <PublicRestrictedRoute
+                    redirectTo="/contacts"
+                    component={<LoginPage />}
+                  />
+                }
+              />
+              <Route
+                path="/contacts"
+                element={
+                  <PrivateRoute
+                    redirectTo="/login"
+                    component={<ContactsPage />}
+                  />
+                }
+              />
+              <Route path="*" element={<ErrorPage />} />
+            </Route>
+          </Routes>
+        )}
+      </Background>
+    </ThemeProvider>
   );
 };
 

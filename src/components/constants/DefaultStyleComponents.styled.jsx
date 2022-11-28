@@ -25,7 +25,7 @@ export const Button = styled.button`
     color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover,
   &:focus {
-    color: ${props => props.theme.colors.light};
+    color: ${props => props.theme.colors.text};
     background-color: ${props => props.theme.colors.accent};
   }
 `;
@@ -33,7 +33,7 @@ export const Button = styled.button`
 export const Text = styled.p`
   font-size: ${props => props.theme.fontSizes.medium};
   font-weight: ${props => props.theme.fontWeight.normal};
-  color: ${props => props.theme.colors.light};
+  color: ${props => props.theme.colors.text};
   background-color: transparent;
 `;
 
@@ -42,7 +42,7 @@ export const BaseStyledNavLink = styled(NavLink)`
   font-weight: ${props => props.theme.fontWeight.mediumPlus};
   font-size: ${props => props.theme.fontSizes.medium};
   text-decoration: none;
-  color: ${props => props.theme.colors.light};
+  color: ${props => props.theme.colors.text};
   transition: opacity 0.3s cubic-bezier(0.51, 0.92, 0.24, 1);
   &::after {
     --scale: 0;
@@ -74,11 +74,11 @@ export const BaseStyledNavLink = styled(NavLink)`
 export const BaseStyledInput = styled(Field)`
   position: relative;
   border: 0;
-  border-bottom: 1px solid ${props => props.theme.colors.light};
+  border-bottom: 1px solid ${props => props.theme.colors.text};
   padding: ${props => props.theme.spacing(3)} ${props => props.theme.spacing(6)};
   font-weight: ${props => props.theme.fontWeight.medium};
   font-size: ${props => props.theme.fontSizes.medium};
-  color: ${props => props.theme.colors.light};
+  color: ${props => props.theme.colors.text};
 `;
 
 export const BaseStyledLabel = styled.label`
@@ -88,7 +88,7 @@ export const BaseStyledLabel = styled.label`
   font-size: ${props => props.theme.fontSizes.medium};
   font-weight: ${props => props.theme.fontWeight.medium};
   margin-bottom: ${props => props.theme.spacing(8)};
-  color: ${props => props.theme.colors.light};
+  color: ${props => props.theme.colors.text};
 `;
 
 export const BaseStyledError = styled.p`

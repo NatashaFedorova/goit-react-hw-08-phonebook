@@ -13,6 +13,7 @@ import {
 import { authReducer } from 'redux/auth/authSlice';
 import { contactsReducer } from 'redux/contacts/contactsSlice';
 import { filterReducer } from './contacts/filterSlice';
+import { themeReducer } from './theme/themeSlice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -20,11 +21,17 @@ const authPersistConfig = {
   whitelist: ['token'],
 };
 
+const themePersistConfig = {
+  key: 'theme',
+  storage,
+};
+
 export const store = configureStore({
   reducer: {
     auth: persistReducer(authPersistConfig, authReducer),
     contacts: contactsReducer,
     filter: filterReducer,
+    theme: persistReducer(themePersistConfig, themeReducer),
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

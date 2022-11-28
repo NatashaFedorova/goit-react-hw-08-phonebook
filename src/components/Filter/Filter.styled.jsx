@@ -6,7 +6,7 @@ export const FilterInput = styled.input`
   border: ${props => props.theme.borders.normal};
   border-radius: ${props => props.theme.radii.normal};
   border-color: ${props => props.theme.colors.accent};
-  color: ${props => props.theme.colors.light};
+  color: ${props => props.theme.colors.text};
   font-size: ${props => props.theme.fontSizes.medium};
   font-weight: ${props => props.theme.fontWeight.normal};
   margin: 0;
@@ -15,7 +15,7 @@ export const FilterInput = styled.input`
     opacity: 0.3;
     font-size: ${props => props.theme.fontSizes.small};
     font-weight: ${props => props.theme.fontWeight.normal};
-    color: ${props => props.theme.colors.light};
+    color: ${props => props.theme.colors.text};
   }
 
   &:focus::placeholder {

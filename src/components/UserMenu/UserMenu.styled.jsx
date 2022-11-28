@@ -11,7 +11,7 @@ export const Box = styled.div`
 `;
 
 export const StyledText = styled(Text)`
-  border-bottom: 1px solid ${props => props.theme.colors.light};
+  border-bottom: 1px solid ${props => props.theme.colors.text};
 `;
 
 export const StyledNavLink = styled(BaseStyledNavLink)``;

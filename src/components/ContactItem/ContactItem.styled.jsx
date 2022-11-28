@@ -41,7 +41,7 @@ export const Call = styled.a`
     color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   &:hover,
   &:focus {
-    color: ${props => props.theme.colors.light};
+    color: ${props => props.theme.colors.text};
     background-color: ${props => props.theme.colors.accent};
   }
 `;
